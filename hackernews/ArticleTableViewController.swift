@@ -93,20 +93,19 @@ class ArticleTableViewController: UITableViewController {
         // Change data
         cell.titleTextView?.text = item?.title
         cell.summaryLabel?.text = "\(item!.score) points by \(item!.by) | \(item!.kids.count) comments"
-        cell.timeLabel?.text = "13m"
+        cell.timeLabel?.text = getMinutesAgo(item: item!)
         
         // Try time stuff:
-        getMinutesAgo(item: item!)
+        
         
         
         return cell
     }
     
-    func getMinutesAgo(item: Item) {
-        let date = NSDate(timeIntervalSince1970: Double(item.time)!)
-        let currentDateTime = NSDate()
-        
-        
+    func getMinutesAgo(item: Item) -> String {
+        let myDouble = Double(item.time)
+        let pastDate = Date(timeIntervalSince1970: myDouble)
+        return pastDate.timeAgoDisplay()
     }
  
     // Model Objects
@@ -117,7 +116,7 @@ class ArticleTableViewController: UITableViewController {
         var id: Int
         var kids: [Int]
         var score: Int
-        var time: String
+        var time: Int
         var title: String
         var type: String
         var url: URL
@@ -126,60 +125,21 @@ class ArticleTableViewController: UITableViewController {
     struct IdArray {
         var ids: [Int]
     }
-    
-    extension Date {
-        func timeAgoDisplay() -> String {
-            let secondsAgo = Int(Date().timeIntervalSince(self))
-            
-            if secondsAgo < 60 {
-                return "\(secondsAgo)s"
-            } 
+
+}
+
+extension Date {
+    func timeAgoDisplay() -> String {
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        
+        if secondsAgo < 60 {
+            return "\(secondsAgo)s"
+        } else if secondsAgo < 60 * 60 {
+            return "\(secondsAgo / 60)m"
+        } else if secondsAgo < 60 * 60 * 24 {
+            return "\(secondsAgo / 60 / 60)h"
         }
+        
+        return "\(secondsAgo / 60 / 60 / 24) days"
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
