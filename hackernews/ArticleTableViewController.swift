@@ -95,11 +95,20 @@ class ArticleTableViewController: UITableViewController {
         cell.summaryLabel?.text = "\(item!.score) points by \(item!.by) | \(item!.kids.count) comments"
         cell.timeLabel?.text = getMinutesAgo(item: item!)
         
-        // Try time stuff:
-        
-        
-        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(indexPath.row)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let wvc = WebViewController()
+        if segue.identifier == "ShowWebViewSegue" {
+            wvc.targetString = "https://apple.com"
+        }
     }
     
     func getMinutesAgo(item: Item) -> String {
@@ -119,7 +128,7 @@ class ArticleTableViewController: UITableViewController {
         var time: Int
         var title: String
         var type: String
-        var url: URL
+        var url: String
     }
     
     struct IdArray {

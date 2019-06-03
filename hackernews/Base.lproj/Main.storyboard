@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,6 +62,7 @@
                                     <outlet property="summaryLabel" destination="lQi-ui-J1g" id="nQc-RE-s7b"/>
                                     <outlet property="timeLabel" destination="5WN-EK-2XO" id="EO2-LB-s9U"/>
                                     <outlet property="titleTextView" destination="oeH-5e-z36" id="CaE-4p-7DV"/>
+                                    <segue destination="ERO-TG-xna" kind="show" identifier="ShowWebViewSegue" id="S65-kL-Wi0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -74,6 +76,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ph0-Gq-L9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="318.84057971014494" y="77.678571428571431"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="yVd-K6-KP4">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="ERO-TG-xna" customClass="WebViewController" customModule="hackernews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="grn-Sq-rJn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j55-VJ-uRa">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j55-VJ-uRa" firstAttribute="top" secondItem="qWf-vb-8vT" secondAttribute="top" id="0RG-ZX-E2f"/>
+                            <constraint firstItem="j55-VJ-uRa" firstAttribute="leading" secondItem="qWf-vb-8vT" secondAttribute="leading" id="Zlm-Is-La7"/>
+                            <constraint firstItem="qWf-vb-8vT" firstAttribute="trailing" secondItem="j55-VJ-uRa" secondAttribute="trailing" id="cok-bb-kzA"/>
+                            <constraint firstItem="qWf-vb-8vT" firstAttribute="bottom" secondItem="j55-VJ-uRa" secondAttribute="bottom" id="dYI-IR-Z6v"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qWf-vb-8vT"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="j55-VJ-uRa" id="1iI-4l-DI2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HFf-bM-hVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092.753623188406" y="77.678571428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W8p-ay-C6Y">
