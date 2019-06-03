@@ -89,10 +89,24 @@ class ArticleTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as! ArticleTableViewCell
         print(items.count)
         let item = items[indexPath.row]
+        
+        // Change data
         cell.titleTextView?.text = item?.title
         cell.summaryLabel?.text = "\(item!.score) points by \(item!.by) | \(item!.kids.count) comments"
         cell.timeLabel?.text = "13m"
+        
+        // Try time stuff:
+        getMinutesAgo(item: item!)
+        
+        
         return cell
+    }
+    
+    func getMinutesAgo(item: Item) {
+        let date = NSDate(timeIntervalSince1970: Double(item.time)!)
+        let currentDateTime = NSDate()
+        
+        
     }
  
     // Model Objects
@@ -103,7 +117,7 @@ class ArticleTableViewController: UITableViewController {
         var id: Int
         var kids: [Int]
         var score: Int
-        var time: Int
+        var time: String
         var title: String
         var type: String
         var url: URL
@@ -111,6 +125,16 @@ class ArticleTableViewController: UITableViewController {
     
     struct IdArray {
         var ids: [Int]
+    }
+    
+    extension Date {
+        func timeAgoDisplay() -> String {
+            let secondsAgo = Int(Date().timeIntervalSince(self))
+            
+            if secondsAgo < 60 {
+                return "\(secondsAgo)s"
+            } 
+        }
     }
 
     /*
