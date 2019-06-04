@@ -18,10 +18,20 @@ class ArticleTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Hacker News"
         print("View did load \(itemIds.count)")
-        
+
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         // Kick off API call
         getHackerNewsStories()
         // Async call return, when it returns the table view will update automatically.
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        getHackerNewsStories()
+        items.removeAll()
+        refreshControl?.endRefreshing()
+        print("Refresh was called")
     }
     
     func getHackerNewsStories() {
@@ -110,6 +120,12 @@ class ArticleTableViewController: UITableViewController {
             }
         }
     }
+    
+    // refresh
+    
+    
+    
+    //
     
     func getMinutesAgo(item: Item) -> String {
         let myDouble = Double(item.time)

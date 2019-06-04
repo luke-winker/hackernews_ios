@@ -27,7 +27,14 @@ class WebViewController: UIViewController {
         self.navigationItem.title = targetItem?.title
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        if let item = targetItem {
+            self.navigationItem.title = "\(item.score) points"
+            self.navigationItem.rightBarButtonItem?.title = "\(item.kids.count) comments"
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

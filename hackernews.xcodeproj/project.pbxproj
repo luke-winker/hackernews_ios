@@ -15,6 +15,8 @@
 		D35C845022A075D6006D7C02 /* hackernewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35C844F22A075D6006D7C02 /* hackernewsTests.swift */; };
 		D35C845B22A075D6006D7C02 /* hackernewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35C845A22A075D6006D7C02 /* hackernewsUITests.swift */; };
 		D37E5B1B22A6B37A0060AA82 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37E5B1A22A6B37A0060AA82 /* WebKit.framework */; };
+		D37E5B1D22A6C1710060AA82 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37E5B1C22A6C1710060AA82 /* CommentTableViewCell.swift */; };
+		D37E5B1F22A6C3280060AA82 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37E5B1E22A6C3280060AA82 /* CommentsTableViewController.swift */; };
 		D3B93A0022A55420003125B7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B939FF22A55420003125B7 /* Model.swift */; };
 		D3DB24B322A5B97700BFCB35 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DB24B222A5B97700BFCB35 /* WebViewController.swift */; };
 		D3FD382722A1695E003418F8 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FD382622A1695E003418F8 /* ArticleTableViewCell.swift */; };
@@ -61,6 +63,8 @@
 		D35C845A22A075D6006D7C02 /* hackernewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackernewsUITests.swift; sourceTree = "<group>"; };
 		D35C845C22A075D6006D7C02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37E5B1A22A6B37A0060AA82 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D37E5B1C22A6C1710060AA82 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		D37E5B1E22A6C3280060AA82 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		D3B939FF22A55420003125B7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D3DB24B222A5B97700BFCB35 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = ../WebViewController.swift; sourceTree = "<group>"; };
 		D3FD382622A1695E003418F8 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
@@ -145,16 +149,18 @@
 		D35C843922A075D5006D7C02 /* hackernews */ = {
 			isa = PBXGroup;
 			children = (
-				D3DB24B222A5B97700BFCB35 /* WebViewController.swift */,
+				D35C843A22A075D5006D7C02 /* AppDelegate.swift */,
 				D3FD382A22A1A19E003418F8 /* ArticleStruct.swift */,
 				D3FD382622A1695E003418F8 /* ArticleTableViewCell.swift */,
-				D35C843A22A075D5006D7C02 /* AppDelegate.swift */,
-				D35C843E22A075D5006D7C02 /* Main.storyboard */,
 				D3FD382822A175B3003418F8 /* ArticleTableViewController.swift */,
 				D35C844122A075D6006D7C02 /* Assets.xcassets */,
-				D35C844322A075D6006D7C02 /* LaunchScreen.storyboard */,
+				D37E5B1E22A6C3280060AA82 /* CommentsTableViewController.swift */,
+				D37E5B1C22A6C1710060AA82 /* CommentTableViewCell.swift */,
 				D35C844622A075D6006D7C02 /* Info.plist */,
+				D35C844322A075D6006D7C02 /* LaunchScreen.storyboard */,
+				D35C843E22A075D5006D7C02 /* Main.storyboard */,
 				D3B939FF22A55420003125B7 /* Model.swift */,
+				D3DB24B222A5B97700BFCB35 /* WebViewController.swift */,
 			);
 			path = hackernews;
 			sourceTree = "<group>";
@@ -383,7 +389,9 @@
 				D3B93A0022A55420003125B7 /* Model.swift in Sources */,
 				D3DB24B322A5B97700BFCB35 /* WebViewController.swift in Sources */,
 				D3FD382922A175B3003418F8 /* ArticleTableViewController.swift in Sources */,
+				D37E5B1F22A6C3280060AA82 /* CommentsTableViewController.swift in Sources */,
 				D3FD382B22A1A19E003418F8 /* ArticleStruct.swift in Sources */,
+				D37E5B1D22A6C1710060AA82 /* CommentTableViewCell.swift in Sources */,
 				D3FD382722A1695E003418F8 /* ArticleTableViewCell.swift in Sources */,
 				D35C843B22A075D5006D7C02 /* AppDelegate.swift in Sources */,
 			);
