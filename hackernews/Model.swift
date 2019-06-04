@@ -9,4 +9,18 @@
 import Foundation
 
 
+struct Item: Decodable {
+    var by: String
+    var descendants: Int
+    var id: Int
+    var kids: [Int]
+    var score: Int
+    var time: Int
+    var title: String
+    var type: String
+    var url: String
+}
 
+struct IdArray {
+    var ids: [Int]
+}

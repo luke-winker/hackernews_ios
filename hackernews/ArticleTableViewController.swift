@@ -12,7 +12,7 @@ class ArticleTableViewController: UITableViewController {
 
     // MARK: Properties
     var itemIds = [Int]()
-    var items = [Item?]()
+    var items = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,23 +91,23 @@ class ArticleTableViewController: UITableViewController {
         let item = items[indexPath.row]
         
         // Change data
-        cell.titleTextView?.text = item?.title
-        cell.summaryLabel?.text = "\(item!.score) points by \(item!.by) | \(item!.kids.count) comments"
-        cell.timeLabel?.text = getMinutesAgo(item: item!)
+        cell.titleTextView?.text = item.title
+        cell.summaryLabel?.text = "\(item.score) points by \(item.by) | \(item.kids.count) comments"
+        cell.timeLabel?.text = getMinutesAgo(item: item)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
-        
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let wvc = WebViewController()
         if segue.identifier == "ShowWebViewSegue" {
-            wvc.targetString = "https://apple.com"
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! WebViewController
+                controller.targetItem = items[indexPath.row]
+            }
         }
     }
     
@@ -119,21 +119,7 @@ class ArticleTableViewController: UITableViewController {
  
     // Model Objects
     
-    struct Item: Decodable {
-        var by: String
-        var descendants: Int
-        var id: Int
-        var kids: [Int]
-        var score: Int
-        var time: Int
-        var title: String
-        var type: String
-        var url: String
-    }
-    
-    struct IdArray {
-        var ids: [Int]
-    }
+   
 
 }
 

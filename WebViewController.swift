@@ -11,21 +11,20 @@ import WebKit
 
 class WebViewController: UIViewController {
 
+    var targetItem: Item? = nil
     @IBOutlet weak var webView: WKWebView!
-    var targetString: String?
     
-    override func loadView() {
-        if let test = targetString, let url = URL(string: test) {
-
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
+    func loadWebPage() {
+        guard let urlString = targetItem?.url else { return }
+        guard let url = URL(string: urlString) else { return }
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        loadWebPage()
+        self.navigationItem.title = targetItem?.title
     }
     
 
