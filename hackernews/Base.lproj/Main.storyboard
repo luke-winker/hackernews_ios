@@ -106,7 +106,7 @@
                     <navigationItem key="navigationItem" title="Title" id="XBY-vG-ayU">
                         <barButtonItem key="rightBarButtonItem" title="Comments" id="1HT-xb-YHc">
                             <connections>
-                                <segue destination="aUq-e3-aPC" kind="show" id="63p-1v-Ljn"/>
+                                <segue destination="aUq-e3-aPC" kind="show" identifier="ShowCommentsSegue" id="63p-1v-Ljn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -127,34 +127,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentTableViewCell" rowHeight="85" id="ge0-zy-snW" customClass="CommentTableViewCell" customModule="hackernews">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentTableViewCell" rowHeight="85" id="ge0-zy-snW" customClass="CommentTableViewCell" customModule="hackernews" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ge0-zy-snW" id="lX9-Ps-C0Q" customClass="CommentTableViewCell">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m22-LN-hYn">
-                                            <rect key="frame" x="8" y="25" width="36" height="34.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b6r-j9-Qle">
-                                            <rect key="frame" x="52" y="5" width="354" height="55"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="b6r-j9-Qle">
+                                            <rect key="frame" x="38" y="5" width="368" height="50.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3g-HM-0rH">
-                                            <rect key="frame" x="58" y="63" width="342" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By user 6 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3g-HM-0rH">
+                                            <rect key="frame" x="50" y="65.5" width="362" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWA-wu-v3A">
+                                            <rect key="frame" x="2" y="25" width="30" height="34.5"/>
+                                            <state key="normal" title="^"/>
+                                        </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="b6r-j9-Qle" firstAttribute="top" secondItem="lX9-Ps-C0Q" secondAttribute="top" constant="5" id="0nF-QM-TTz"/>
+                                        <constraint firstAttribute="bottom" secondItem="wWA-wu-v3A" secondAttribute="bottom" constant="25" id="Aco-Rb-m2n"/>
+                                        <constraint firstItem="P3g-HM-0rH" firstAttribute="leading" secondItem="lX9-Ps-C0Q" secondAttribute="leading" constant="50" id="BnF-11-qRV"/>
+                                        <constraint firstAttribute="bottom" secondItem="P3g-HM-0rH" secondAttribute="bottom" constant="2" id="TmA-V6-uA1"/>
+                                        <constraint firstItem="P3g-HM-0rH" firstAttribute="top" secondItem="b6r-j9-Qle" secondAttribute="bottom" constant="10" id="d4Q-kq-RrO"/>
+                                        <constraint firstAttribute="trailing" secondItem="b6r-j9-Qle" secondAttribute="trailing" constant="8" id="iaA-kK-Ymh"/>
+                                        <constraint firstItem="b6r-j9-Qle" firstAttribute="leading" secondItem="wWA-wu-v3A" secondAttribute="trailing" constant="6" id="jZj-lX-cAS"/>
+                                        <constraint firstAttribute="trailing" secondItem="P3g-HM-0rH" secondAttribute="trailing" constant="2" id="k8a-8d-nIM"/>
+                                        <constraint firstItem="b6r-j9-Qle" firstAttribute="leading" secondItem="wWA-wu-v3A" secondAttribute="trailing" constant="6" id="ocQ-RV-xZA"/>
+                                        <constraint firstItem="wWA-wu-v3A" firstAttribute="leading" secondItem="lX9-Ps-C0Q" secondAttribute="leading" constant="2" id="peB-VV-eKx"/>
+                                        <constraint firstItem="wWA-wu-v3A" firstAttribute="top" secondItem="lX9-Ps-C0Q" secondAttribute="top" constant="25" id="ti7-Hk-LTu"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="commentTextView" destination="b6r-j9-Qle" id="7VZ-v4-bQH"/>
+                                    <outlet property="descriptionLabel" destination="P3g-HM-0rH" id="8cz-Dn-IV4"/>
+                                    <outlet property="upvoteButton" destination="wWA-wu-v3A" id="Ckw-f0-Cy4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
