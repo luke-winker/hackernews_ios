@@ -22,6 +22,10 @@ class ArticleTableViewController: UITableViewController {
         // Kick off API call
         getHackerNewsStories()
         // Async call return, when it returns the table view will update automatically.
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:  #selector(refresh), for: .valueChanged)
+        self.refreshControl = refreshControl
     }
     
     @objc func refresh(sender: AnyObject) {
