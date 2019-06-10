@@ -32,6 +32,11 @@ class ArticleTableViewController: UITableViewController {
         self.itemIds.removeAll()
         self.items.removeAll()
         getHackerNewsStories()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
         refreshControl?.endRefreshing()
         print("Refresh was called")
     }
