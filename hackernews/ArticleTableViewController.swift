@@ -29,8 +29,6 @@ class ArticleTableViewController: UITableViewController {
     }
     
     @objc func refresh(sender: AnyObject) {
-        items.removeAll()
-        getHackerNewsStories()
         refreshControl?.endRefreshing()
         print("Refresh was called")
     }
@@ -41,12 +39,12 @@ class ArticleTableViewController: UITableViewController {
         var localItemIds = [Int]()
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             
+            
+            // Should decode json instead
             guard let data = data else { return }
             var dataAsString = String(data: data, encoding: .utf8)
-            //print(dataAsString!)
             dataAsString = dataAsString?.replacingOccurrences(of: "[", with: "")
             dataAsString = dataAsString?.replacingOccurrences(of: "]", with: "")
-            
             var stringArray = dataAsString!.components(separatedBy: ",")
             
             // above works, but optimization would be to JSON parse
@@ -89,7 +87,6 @@ class ArticleTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -121,12 +118,7 @@ class ArticleTableViewController: UITableViewController {
             }
         }
     }
-    
-    // refresh
-    
-    
-    
-    //
+
     
     func getMinutesAgo(item: Item) -> String {
         let myDouble = Double(item.time)
@@ -134,10 +126,6 @@ class ArticleTableViewController: UITableViewController {
         return pastDate.timeAgoDisplay()
     }
  
-    // Model Objects
-    
-   
-
 }
 
 extension Date {
