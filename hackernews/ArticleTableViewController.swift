@@ -29,6 +29,9 @@ class ArticleTableViewController: UITableViewController {
     }
     
     @objc func refresh(sender: AnyObject) {
+        self.itemIds.removeAll()
+        self.items.removeAll()
+        getHackerNewsStories()
         refreshControl?.endRefreshing()
         print("Refresh was called")
     }
@@ -36,13 +39,11 @@ class ArticleTableViewController: UITableViewController {
     func getHackerNewsStories() {
         let jsonUrlTopStories = "https://hacker-news.firebaseio.com/v0/topstories.json?"
         guard let url = URL(string: jsonUrlTopStories) else { return }
-        var localItemIds = [Int]()
         URLSession.shared.dataTask(with: url) { (data, response, err) in
-            
-            guard var data = data else { return }
+            guard let data = data else { return }
             
             do {
-                var item = try JSONDecoder().decode([Int].self, from: data)
+                let item = try JSONDecoder().decode([Int].self, from: data)
                 print(item)
                 self.itemIds = item
             } catch {
@@ -54,13 +55,9 @@ class ArticleTableViewController: UITableViewController {
                 self.getItems()
             }
         }.resume()
-      
-        print("num of rows \(itemIds.count)")
-        
     }
     
     func getItems() {
-        
         for id in self.itemIds {
             var itemFromId = "https://hacker-news.firebaseio.com/v0/item/\(id).json?"
             guard let url = URL(string: itemFromId) else { return }
