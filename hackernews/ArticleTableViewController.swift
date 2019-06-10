@@ -39,28 +39,22 @@ class ArticleTableViewController: UITableViewController {
         var localItemIds = [Int]()
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             
+            guard var data = data else { return }
             
-            // Should decode json instead
-            guard let data = data else { return }
-            var dataAsString = String(data: data, encoding: .utf8)
-            dataAsString = dataAsString?.replacingOccurrences(of: "[", with: "")
-            dataAsString = dataAsString?.replacingOccurrences(of: "]", with: "")
-            var stringArray = dataAsString!.components(separatedBy: ",")
-            
-            // above works, but optimization would be to JSON parse
-            var intArray = [Int]()
-            for numberString in stringArray {
-                intArray.append(Int(numberString)!)
+            do {
+                var item = try JSONDecoder().decode([Int].self, from: data)
+                print(item)
+                self.itemIds = item
+            } catch {
+                print("Decode item ids error", err)
             }
-            self.itemIds = intArray
-            localItemIds = intArray
-            DispatchQueue.main.async{
+            
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.getItems()
             }
-            print("url sesh \(self.itemIds.count)")
-            }.resume()
-        
+        }.resume()
+      
         print("num of rows \(itemIds.count)")
         
     }
